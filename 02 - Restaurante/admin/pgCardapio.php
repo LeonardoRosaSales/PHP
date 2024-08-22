@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 require_once 'menu.php';
 ?>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ require_once 'menu.php';
 
 <body>
 
-    <div class="container">
+    <div class="container mt-3">
         <!-- Botão Modal Cadastro - Início -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro">
             Adicionar Cardápio
@@ -30,14 +31,65 @@ require_once 'menu.php';
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Cadastrar</button>
+                        <form action="opCardapio.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Cardápio</label>
+                                <input type="text" class="form-control" name="txt_cardapio"
+                                    placeholder="Digite o nome do Cardápio">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Foto</label>
+                                <input class="form-control" type="file" name="file_foto">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Listagem Início -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Cardápio</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php
+                    $lista = $pdo->query("SELECT * FROM cardapios");
+
+                    while ($linha = $lista->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+
+                <tr>
+                    <th scope="row"><?php echo $linha['idcardapio']?></th>
+                    <td><?php echo $linha['cardapio']?></td>
+                    <td>
+                        <img src="img/<?php echo $linha['foto']?>" width="100px" alt="">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#modalCadastro">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modalCadastro">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        <!-- Listagem Fim -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
