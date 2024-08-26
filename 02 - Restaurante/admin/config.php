@@ -9,4 +9,3 @@ try {
     echo "ERRO: " . $erro->getMessage();
     exit;
 };
-?>
