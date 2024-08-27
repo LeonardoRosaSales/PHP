@@ -15,9 +15,9 @@
             Menu
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Banner</a></li>
+            <li><a class="dropdown-item" href="pgBanner.php">Banner</a></li>
             <li><a class="dropdown-item" href="pgCardapio.php">Cardápio</a></li>
-            <li><a class="dropdown-item" href="#">Pratos</a></li>
+            <li><a class="dropdown-item" href="pgPrato.php">Pratos</a></li>
             <li><a class="dropdown-item" href="#">Sobre</a></li>
           </ul>
         </li>
