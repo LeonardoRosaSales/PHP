@@ -44,9 +44,10 @@ require_once 'menu.php';
                                     $sql = $pdo->query("SELECT * FROM cardapios ORDER BY cardapio");
 
                                     while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                        
-                                    ?>
-                                    <option value="<?php echo $linha['idcardapio']?>"><?php echo $linha['cardapio']?></option>
+
+                                        ?>
+                                        <option value="<?php echo $linha['idcardapio'] ?>"><?php echo $linha['cardapio'] ?>
+                                        </option>
 
                                     <?php } ?>
 
@@ -141,6 +142,27 @@ require_once 'menu.php';
                                             <label class="form-label">Prato</label>
                                             <input type="text" class="form-control" name="txt_prato"
                                                 placeholder="Digite o nome do Prato" value="<?php echo $linha['prato'] ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Selecione seu Cardápio</label>
+                                            <select class="form-select" name="txt_cardapio">
+                                                <?php
+                                                $sql = $pdo->query("SELECT * FROM cardapios ORDER BY cardapio");
+
+                                                while ($linhac = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                                    if ($linha['idcardapio'] == $linhac['idcardapio']) {
+
+                                                    ?>
+                                                    <option value="<?php echo $linhac['idcardapio'] ?>">
+                                                        <?php echo $linhac['cardapio'] ?></option>
+
+                                                <?php } else { ?>
+                                                    <option value="<?php echo $linhac['idcardapio'] ?>">
+                                                     <?php echo $linhac['cardapio'] ?></option>
+
+                                                <?php } } ?>
+
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label">Foto</label>
