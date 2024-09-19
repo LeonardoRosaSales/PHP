@@ -1,3 +1,9 @@
+<?php
+    if($error == 'exist'){
+        echo '<p class="alert alert-danger">E-mail já cadastrado</p>';
+    }
+?>
+
 <div class="container mt-3">
     <h3>Adicionar</h3>
     <form action="<?php echo BASE_URL ?>contatos/add_save" method="POST">
